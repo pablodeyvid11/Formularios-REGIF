@@ -1,6 +1,7 @@
 package com.pablodeyvid.demo.dto;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 import com.pablodeyvid.demo.entities.Resposta;
 
@@ -9,8 +10,10 @@ public class RespostaDTO implements Serializable {
 
 	private Long id;
 	private String email;
+	private Instant data_hora;
 	private String campus;
 	private String modalidade;
+	private String periodo;
 	private String f;
 	private String g;
 	private String h;
@@ -28,14 +31,17 @@ public class RespostaDTO implements Serializable {
 	private String t;
 	
 	public RespostaDTO() {}
-
-	public RespostaDTO(Long id, String email, String campus, String modalidade, String f, String g, String h, String i,
-			String j, String k, String l, String m, String n, String o, String p, String q, String r, String s,
-			String t) {
+	
+	public RespostaDTO(Long id, String email, Instant data_hora, String campus, String modalidade, String periodo,
+			String f, String g, String h, String i, String j, String k, String l, String m, String n, String o,
+			String p, String q, String r, String s, String t) {
+		super();
 		this.id = id;
 		this.email = email;
+		this.data_hora = data_hora;
 		this.campus = campus;
 		this.modalidade = modalidade;
+		this.periodo = periodo;
 		this.f = f;
 		this.g = g;
 		this.h = h;
@@ -52,12 +58,14 @@ public class RespostaDTO implements Serializable {
 		this.s = s;
 		this.t = t;
 	}
-	
+
 	public RespostaDTO (Resposta resposta) {
 		id = resposta.getId();
 		email = resposta.getEmail();
+		setData_hora(resposta.getData_hora());
 		campus = resposta.getCampus();
 		modalidade = resposta.getModalidade();
+		periodo = resposta.getPeriodo();
 		f = resposta.getF();
 		g = resposta.getG();
 		h = resposta.getH();
@@ -83,6 +91,14 @@ public class RespostaDTO implements Serializable {
 		this.email = email;
 	}
 
+	public Instant getData_hora() {
+		return data_hora;
+	}
+
+	public void setData_hora(Instant data_hora) {
+		this.data_hora = data_hora;
+	}
+
 	public String getCampus() {
 		return campus;
 	}
@@ -97,6 +113,14 @@ public class RespostaDTO implements Serializable {
 
 	public void setModalidade(String modalidade) {
 		this.modalidade = modalidade;
+	}
+
+	public String getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(String periodo) {
+		this.periodo = periodo;
 	}
 
 	public String getF() {
