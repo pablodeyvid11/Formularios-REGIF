@@ -22,4 +22,11 @@ public class RespostaService {
 		List<Resposta> lista = respostaRepository.findAll();
 		return lista.stream().map(x -> new RespostaDTO(x)).collect(Collectors.toList());
 	}
+	
+	@Transactional(readOnly = true)
+	public List<RespostaDTO> findByCampus(String campus) {
+		List<Resposta> lista = respostaRepository.findAll();
+		lista = lista.stream().filter((x) -> x.getCampus().equalsIgnoreCase(campus)).collect(Collectors.toList());
+		return lista.stream().map(x -> new RespostaDTO(x)).collect(Collectors.toList());
+	}
 }
