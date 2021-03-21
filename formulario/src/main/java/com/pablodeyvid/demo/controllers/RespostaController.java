@@ -18,15 +18,18 @@ public class RespostaController {
 
 	@Autowired
 	private RespostaService respostaService;
-	
+
 	@GetMapping
 	public ResponseEntity<List<RespostaDTO>> findAll() {
 		List<RespostaDTO> lista = respostaService.findAll();
 		return ResponseEntity.ok().body(lista);
 	}
-	
+
 	@GetMapping("/{campus}")
-	public ResponseEntity<List<RespostaDTO>> findByCampus(@PathVariable String campus){
+	public ResponseEntity<List<RespostaDTO>> findByCampus(@PathVariable String campus) {
+		if (campus.equals("IFRN")) {
+			return findAll();
+		}
 		List<RespostaDTO> lista = respostaService.findByCampus(campus);
 		return ResponseEntity.ok().body(lista);
 	}
